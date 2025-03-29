@@ -1,0 +1,672 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  position: relative;
+  text-align: center;
+  padding: 60px 20px;
+  color: white;
+  overflow: hidden;
+  
+  /* Animated Gradient Background */
+  background: linear-gradient(-45deg, #007bff, #000000, #00c6ff, #007bff);
+  background-size: 400% 400%;
+  animation: gradientBG 8s ease infinite;
+  
+  /* Box shadow for depth */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.header-title {
+  margin: 0;
+  font-size: 2.8rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  
+  /* Fade + Slide Down animation */
+  opacity: 0;
+  animation: fadeInDown 1s forwards;
+}
+
+.header-subtitle {
+  margin: 15px 0 0;
+  font-size: 1.3rem;
+  font-weight: 500;
+  opacity: 0;
+  animation: fadeInUp 1s forwards 0.5s; /* Delayed start by 0.5s */
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.header p {
+  margin: 10px 0 0;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.products-container {
+  padding: 30px 0;
+}
+
+.products-row {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 20px 10px;
+  margin-bottom: 30px;
+  scrollbar-width: thin;
+  scrollbar-color: #040510 #f5f5f5;
+}
+
+.products-row::-webkit-scrollbar {
+  height: 8px;
+}
+
+.products-row::-webkit-scrollbar-track {
+  background: #f5f5f5;
+  border-radius: 10px;
+}
+
+.products-row::-webkit-scrollbar-thumb {
+  background-color: #25D366;
+  border-radius: 10px;
+}
+
+.product-card {
+  flex: 0 0 calc(14.28% - 20px); /* 7 items per row */
+  min-width: 300px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.product-info {
+  padding: 15px;
+  text-align: center;
+}
+
+.product-caption {
+  color: #1e3a8a;;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.4;
+  margin-bottom: 10px;
+  min-height: 40px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limits to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease-in-out;
+}
+
+.product-caption:hover {
+  background: rgba(0, 0, 0, 0.1);
+  transform: scale(1.02);
+}
+
+
+.product-price {
+  color: #1e3a8a;;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  display: inline-block;
+  padding: 5px 12px;
+  background: rgba(231, 76, 60, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(231, 76, 60, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.product-price:hover {
+  background: rgba(231, 76, 60, 0.2);
+  transform: scale(1.05);
+}
+
+
+.whatsapp-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #25D366;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 30px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.whatsapp-button:hover {
+  background-color: #128C7E;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.whatsapp-button i {
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+/* Modal Styling */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.modal-image {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+}
+
+/* Close Button */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0);
+  color: white;
+  border: none;
+  font-size: 20px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.close-button:hover {
+  background: darkred;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .product-card {
+    flex: 0 0 calc(20% - 20px); /* 5 items per row */
+  }
+}
+
+@media (max-width: 992px) {
+  .product-card {
+    flex: 0 0 calc(25% - 20px); /* 4 items per row */
+  }
+}
+
+@media (max-width: 768px) {
+  .product-card {
+    flex: 0 0 calc(33.33% - 20px); /* 3 items per row */
+  }
+}
+
+@media (max-width: 576px) {
+  .product-card {
+    flex: 0 0 calc(50% - 20px); /* 2 items per row */
+  }
+}
+
+/* Add this to your existing CSS */
+
+/* Background for the entire page */
+body {
+  background: linear-gradient(-45deg, #007bff, #000000, #00c6ff, #007bff);
+  background-size: 400% 400%;
+  animation: gradientBG 8s ease infinite;
+  min-height: 100vh;
+}
+
+/* Product Card Animation */
+.product-card {
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(5px);
+}
+
+.product-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.product-card:hover::before {
+  left: 100%;
+}
+
+.product-card:hover {
+  transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+/* Inner glow effect */
+.product-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 10px;
+  box-shadow: inset 0 0 20px rgba(0, 198, 255, 0.2);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.product-card:hover::after {
+  opacity: 1;
+}
+
+/* Floating animation for all cards */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.product-card {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Stagger the animations */
+.products-row .product-card:nth-child(1) { animation-delay: 0s; }
+.products-row .product-card:nth-child(2) { animation-delay: 0.2s; }
+.products-row .product-card:nth-child(3) { animation-delay: 0.4s; }
+.products-row .product-card:nth-child(4) { animation-delay: 0.6s; }
+.products-row .product-card:nth-child(5) { animation-delay: 0.8s; }
+.products-row .product-card:nth-child(6) { animation-delay: 1s; }
+.products-row .product-card:nth-child(7) { animation-delay: 1.2s; }
+
+/* Container adjustments */
+.container {
+  background: rgba(245, 245, 245, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  margin: 20px auto;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Header adjustments for consistency */
+.header {
+  border-radius: 0 0 15px 15px;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Product image hover effect */
+.product-image {
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* WhatsApp button enhancement */
+.whatsapp-button {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.whatsapp-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: 0.5s;
+  z-index: -1;
+}
+
+.whatsapp-button:hover::before {
+  left: 100%;
+}
+
+/* Basket Component Styles */
+.basket {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  margin-top: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Basket Header */
+.basket h2 {
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+/* Basket List */
+.basket ul {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 15px;
+}
+
+/* Individual Basket Item */
+.basket li {
+  display: flex;
+  justify-content: space-between; /* Space between item name & button */
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 8px;
+  background: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+}
+
+/* Remove Item Button */
+.remove-item-button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.remove-item-button:hover {
+  background-color: #c0392b;
+}
+
+/* Basket Buttons Container */
+.basket-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+/* Order and Clear Buttons */
+.send-order-button,
+.clear-basket-button {
+  flex: 1; /* Flexible button width */
+  background-color: #25D366;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  margin-right: 10px;
+}
+
+.send-order-button:hover,
+.clear-basket-button:hover {
+  background-color: #128C7E;
+}
+
+.send-order-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Last Button Fix */
+.clear-basket-button {
+  margin-right: 0;
+}
+.basket-button {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  background-color: #1e3a8a;;
+  color: white;
+  border: none;
+  padding: 8px 0;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.basket-button:hover {
+  background-color: #446ee0;;
+}
+
+.aboutus {
+  background: linear-gradient(135deg, #1a1a1a, #333333);
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.h1about {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  animation: slideIn 1s ease-out forwards;
+}
+
+.nbr {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  opacity: 0;
+  animation: fadeIn 1.2s ease-out forwards 0.5s;
+}
+
+.linkinsta {
+  color: #ff007f;
+  font-size: 1.3rem;
+  font-weight: bold;
+  display: inline-block;
+  text-decoration: none;
+  margin-top: 10px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.linkinsta:hover {
+  transform: scale(1.1);
+  color: #ff4da6;
+}
+
+.para {
+  color: white;
+  font-size: 1.2rem;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 20px auto;
+  opacity: 0;
+  animation: fadeIn 1.5s ease-out forwards 0.8s;
+}
+
+
+.buttomcard {
+  display: flex;
+  justify-content: space-between; /* Distributes space evenly */
+  align-items: center;
+  gap: 10px; /* Adds spacing between buttons */
+  margin-top: 10px;
+}
+
+.whatsapp-button, .basket-button {
+  flex: 1; /* Makes both buttons take equal space */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  text-decoration: none;
+  text-align: center;
+}
+
+.whatsapp-button {
+  background-color: #25D366; /* WhatsApp green */
+  color: white;
+}
+
+.whatsapp-button:hover {
+  background-color: #1ebe57;
+}
+
+.basket-button {
+  background-color: #1e3a8a; /* Blue */
+  color: white;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.basket-button:hover {
+  background-color: #4978de;
+}
+
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
